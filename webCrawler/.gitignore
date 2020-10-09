@@ -6,8 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
-webCrawler/appsettings.json
-webCrawler/appsettings.Development.json
+appsettings.json
+appsettings.Development.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
