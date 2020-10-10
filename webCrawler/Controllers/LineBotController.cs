@@ -30,7 +30,7 @@ namespace webCrawler.Controllers
 
         [HttpPost]
         public async Task<IActionResult> POST () {
-            StickerList = _config.GetSection ("Sticker:StickerList").Get<List<int>> ();
+            StickerList = Array.ConvertAll(_config.GetSection ("Sticker:StickerList").Get<string> ().Split(","),int.Parse).ToList();
             PackageId = _config.GetSection ("Sticker:PackageId").Get<int> ();
             //get configuration from appsettings.json
             var token = _config.GetSection ("channelAccessToken");

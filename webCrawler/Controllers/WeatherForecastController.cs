@@ -54,9 +54,9 @@ namespace webCrawler.Controllers {
             HttpClient httpClient = new HttpClient ();
 
             //get data cols
-            string[] cols = Configuration.GetSection ("Col").Get<string[]> ();
+            string[] cols = Configuration.GetSection ("Col").Get<string> ().Split(",");
             //get cols ch name
-            string[] chCols = Configuration.GetSection ("ChCol").Get<string[]> ();
+            string[] chCols = Configuration.GetSection ("ChCol").Get<string> ().Split(",");
             //how to get col
             SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
             //csv
@@ -107,9 +107,9 @@ namespace webCrawler.Controllers {
             HttpClient httpClient = new HttpClient ();
             var result = new List<Dictionary<string,object>> ();
             
-            var urls = Configuration.GetSection ("Url").Get<string[]> ();
-            string[] cols = Configuration.GetSection ("Col").Get<string[]> ();
-            string[] chCols = Configuration.GetSection ("ChCol").Get<string[]> ();
+            var urls = Configuration.GetSection ("Url").Get<string> ().Split(",");
+            string[] cols = Configuration.GetSection ("Col").Get<string> ().Split(",");
+            string[] chCols = Configuration.GetSection ("ChCol").Get<string> ().Split(",");
             SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
             StringBuilder stringBuilder = new StringBuilder ();
             foreach (string url in urls) {

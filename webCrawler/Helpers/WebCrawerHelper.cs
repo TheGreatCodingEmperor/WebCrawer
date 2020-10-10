@@ -19,8 +19,8 @@ namespace webCrawler.Helpers {
 
             var url = Configuration.GetSection ("StockHome").Get<string> ();
             url = $"{url}{stockNo}";
-            string[] cols = Configuration.GetSection ("Col").Get<string[]> ();
-            string[] chCols = Configuration.GetSection ("ChCol").Get<string[]> ();
+            string[] cols = Configuration.GetSection ("Col").Get<string> ().Split(",");
+            string[] chCols = Configuration.GetSection ("ChCol").Get<string> ().Split(",");
             SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
             StringBuilder stringBuilder = new StringBuilder ();
             var responseMessage = await httpClient.GetAsync (url); //發送請求
