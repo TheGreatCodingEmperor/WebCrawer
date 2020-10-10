@@ -103,6 +103,7 @@ namespace webCrawler.Controllers
                     responseMsg = new isRock.LineBot.TextMessage ($"None handled event type : { LineEvent.type}");
                     responseMsgs.Add (responseMsg);
                 }
+                await Task.CompletedTask;
 
                 //回覆訊息
                 bot.ReplyMessage (LineEvent.replyToken, responseMsgs);
