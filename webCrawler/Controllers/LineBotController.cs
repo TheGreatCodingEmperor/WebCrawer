@@ -28,9 +28,9 @@ namespace webCrawler.Controllers
             _config = configuration;
         }
         [HttpGet()]
-        public async Task<IActionResult> config(){
+        public async Task<IActionResult> config([FromHeader] string configText){
             await Task.CompletedTask;
-            return Ok(_config.GetSection("Sticker:StickerList").Get<string> ());
+            return Ok(_config.GetSection(configText).Get<string> ());
         }
 
         [HttpPost]
