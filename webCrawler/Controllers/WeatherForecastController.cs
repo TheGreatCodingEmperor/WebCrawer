@@ -50,11 +50,16 @@ namespace webCrawler.Controllers {
 
         [HttpGet ("crawler")]
         public async Task<IActionResult> Crawler () {
+            //call api get
             HttpClient httpClient = new HttpClient ();
 
+            //get data cols
             string[] cols = Configuration.GetSection ("Col").Get<string[]> ();
+            //get cols ch name
             string[] chCols = Configuration.GetSection ("ChCol").Get<string[]> ();
+            //how to get col
             SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
+            //csv
             StringBuilder stringBuilder = new StringBuilder ();
             var colsBox = new List<string>();
             foreach(var chCol in chCols){

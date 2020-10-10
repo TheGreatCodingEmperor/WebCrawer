@@ -20,8 +20,10 @@ namespace webCrawler {
             services.AddSwaggerGen ();
             services.AddSingleton<LineBotConfig, LineBotConfig> ((s) => new LineBotConfig {
                 channelSecret = Configuration["LineBot:channelSecret"],
-                    accessToken = Configuration["LineBot:accessToken"]
+                accessToken = Configuration["LineBot:accessToken"],
+                userId = Configuration["LineBot:userId"]
             });
+            services.AddHttpContextAccessor();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles (configuration => {
@@ -43,6 +45,7 @@ namespace webCrawler {
             }
 
             app.UseRouting ();
+            // app.UseHttpsRedirection();
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllerRoute (
