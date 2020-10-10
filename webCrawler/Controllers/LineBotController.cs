@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +33,8 @@ namespace webCrawler.Controllers
             StickerList = _config.GetSection ("Sticker:StickerList").Get<List<int>> ();
             PackageId = _config.GetSection ("Sticker:PackageId").Get<int> ();
             //get configuration from appsettings.json
-            var token = _config.GetSection ("LINE-Bot-Setting:channelAccessToken");
-            var AdminUserId = _config.GetSection ("LINE-Bot-Setting:adminUserID");
+            var token = _config.GetSection ("channelAccessToken");
+            var AdminUserId = _config.GetSection ("adminUserID");
             var body = ""; //for JSON Body
             //create vot instance
             var bot = new isRock.LineBot.Bot (token.Value);
@@ -77,8 +78,8 @@ namespace webCrawler.Controllers
                                 //add TemplateMessage into responseMsgs
                                 responseMsgs.Add (new isRock.LineBot.TemplateMessage (tmp));
                             }
-                            else if(LineEvent.message.text.Contains("股票:")){
-                                string stockNo = LineEvent.message.text.Split(":")[1];
+                            else if(LineEvent.message.text.Contains("股票")){
+                                string stockNo = Regex.Split(LineEvent.message.text,"股票.")[1];
                                 var webCrawlerHelper = new WebCrawerHelper(_config);
                                 string data = webCrawlerHelper.getDatas(stockNo).Result;
                                 responseMsg =
