@@ -58,7 +58,7 @@ namespace webCrawler.Controllers {
             //get cols ch name
             string[] chCols = Configuration.GetSection ("ChCol").Get<string> ().Split(",");
             //how to get col
-            SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
+            SelectorDto[] selectors = JsonConvert.DeserializeObject<SelectorDto[]>(Configuration.GetSection ("Selector").Get<string> ());
             //csv
             StringBuilder stringBuilder = new StringBuilder ();
             var colsBox = new List<string>();
@@ -110,7 +110,7 @@ namespace webCrawler.Controllers {
             var urls = Configuration.GetSection ("Url").Get<string> ().Split(",");
             string[] cols = Configuration.GetSection ("Col").Get<string> ().Split(",");
             string[] chCols = Configuration.GetSection ("ChCol").Get<string> ().Split(",");
-            SelectorDto[] selectors = Configuration.GetSection ("Selector").Get<SelectorDto[]> ();
+            SelectorDto[] selectors =  JsonConvert.DeserializeObject<SelectorDto[]>(Configuration.GetSection ("Selector").Get<string> ());
             StringBuilder stringBuilder = new StringBuilder ();
             foreach (string url in urls) {
                 var responseMessage = await httpClient.GetAsync (url); //發送請求
