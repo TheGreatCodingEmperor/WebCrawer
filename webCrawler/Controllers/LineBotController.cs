@@ -27,6 +27,11 @@ namespace webCrawler.Controllers
             _logger = logger;
             _config = configuration;
         }
+        [HttpGet()]
+        public async Task<IActionResult> config(){
+            await Task.CompletedTask;
+            return Ok(_config.GetSection("Sticker:StickerList").Get<string> ());
+        }
 
         [HttpPost]
         public async Task<IActionResult> POST () {
