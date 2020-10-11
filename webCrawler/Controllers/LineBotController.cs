@@ -101,9 +101,9 @@ namespace webCrawler.Controllers
                                 responseMsg =
                                 new isRock.LineBot.TextMessage(data);
                                 responseMsgs.Add(responseMsg);
-                                var url = Configuration.GetSection("StockHome").Get<string>();
+                                var url = _config.GetSection("StockHome").Get<string>();
                                 url = $"{url}{stockNo}";
-                                responseMsgs.Add(url);
+                                responseMsgs.Add( new isRock.LineBot.TextMessage(data));
                             }
                             break;
                         case "sticker":
