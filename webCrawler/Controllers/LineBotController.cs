@@ -103,7 +103,7 @@ namespace webCrawler.Controllers
                                 responseMsgs.Add(responseMsg);
                                 var url = _config.GetSection("StockHome").Get<string>();
                                 url = $"{url}{stockNo}";
-                                responseMsgs.Add( new isRock.LineBot.TextMessage(data));
+                                responseMsgs.Add( new isRock.LineBot.TextMessage(url));
                             }
                             break;
                         case "sticker":
